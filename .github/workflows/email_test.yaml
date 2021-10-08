@@ -1,7 +1,11 @@
 on:
   push:
-    branches:
-      - feature/bug1
+    tags:
+      - bug1-*
+#   push:
+#     branches:
+#       - feature/bug1
+
 name: Email body test
 
 jobs:
@@ -12,4 +16,3 @@ jobs:
       - name: Email body test
         run: |
               echo ${GITHUB_REF#refs/heads/}
-              echo ${{ steps.prep.outputs.BUILD_ID }}
