@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+      - feature/bug1
+name: Email body test
+
+jobs:
+  build and deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Email body test
+        run: |
+              echo ${GITHUB_REF#refs/heads/}
+              echo ${{ steps.prep.outputs.BUILD_ID }}
