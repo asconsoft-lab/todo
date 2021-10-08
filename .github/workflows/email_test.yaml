@@ -5,8 +5,8 @@ on:
 name: Email body test
 
 jobs:
-  build and deploy:
-    name: Build and Deploy
+  test_build:
+    name: Email body text
     runs-on: ubuntu-latest
     steps:
       - name: Email body test
