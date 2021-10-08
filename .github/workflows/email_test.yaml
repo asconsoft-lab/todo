@@ -16,4 +16,5 @@ jobs:
       - name: Email body test
         run: |
               echo ${GITHUB_REF#refs/heads/}
+              echo ${GITHUB_REF/refs\/tags\//}
               echo ${{ github.event.release.tag_name }}
