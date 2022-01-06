@@ -1,0 +1,21 @@
+name: Docker test
+on:
+  push:
+    branches:
+      - test/docker-build
+
+env:
+  PROFILE: alpha
+  
+jobs:
+  docker-run:
+    name: Docker Test Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: docker build
+        run: |
+          docker build --tag test .
