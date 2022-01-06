@@ -3,6 +3,7 @@ ARG PROFILE
 
 ENV PROFILE ${PROFILE}
 RUN echo $PROFILE hello worlds
+CMD [ "echo", "$PROFILE" ]
 # ARG PROFILE_ENV
 # ENV PROFILE_ENV=$PROFILE
 # RUN echo $PROFILE_ENV hello worlds
