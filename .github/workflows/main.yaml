@@ -24,7 +24,7 @@ jobs:
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo apt install -y ./google-chrome-stable_current_amd64.deb
     - name: Build with Maven
-      run: mvn clean install
       env:
           GINTAA_EMAIL_ID: ${{ secrets.GINTAA_EMAIL_ID }}
           GINTAA_PASSWORD: ${{ secrets.GINTAA_PASSWORD }}
+      run: mvn clean install
