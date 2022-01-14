@@ -34,4 +34,6 @@ jobs:
       env:
           GINTAA_EMAIL_ID: ${{ secrets.GINTAA_EMAIL_ID }}
           GINTAA_PASSWORD: ${{ secrets.GINTAA_PASSWORD }}
-      run: mvn clean install
+      run: |-
+        echo "${{ secrets.AUTH_TEST }}" > ./src/main/resources/application.properties
+        mvn clean install
