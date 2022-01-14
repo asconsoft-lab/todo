@@ -1,19 +1,34 @@
-/out/
-/resources/public/js/compiled/
-/target/
-/*-init.clj
-/*.log
+*.http
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
 
-# Leiningen
-/.lein-*
-/.nrepl-port
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# Node.js dependencies
-/node_modules/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 
-# shadow-cljs cache, port files
-/shadow-cljs.edn
-/.shadow-cljs/
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
 
-# clj-kondo cache
-/.clj-kondo/.cache
+### VS Code ###
+.vscode/
+.DS_Store
+*.exe

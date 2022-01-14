@@ -1,0 +1,30 @@
+name: Web UI automation test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - test/docker-build  
+
+jobs:
+  build:
+    name: Maven Workflow
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: maven
+    - name: Install Google Chrome
+      run: |-
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt install -y ./google-chrome-stable_current_amd64.deb
+    - name: Build with Maven
+      run: mvn clean install
+      env:
+          GINTAA_EMAIL_ID: ${{ secrets.GINTAA_EMAIL_ID }}
+          GINTAA_PASSWORD: ${{ secrets.GINTAA_PASSWORD }}
