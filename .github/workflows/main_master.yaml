@@ -1,14 +1,13 @@
 on:
+  workflow_dispatch:
   push:
     branches:
-      - develop
-      - feature/zap
       - feature/sendgrid
 
-name: Release | Deploy
+name: Sendgrid
 
 jobs:
-   SendGrid:
+  SendGrid:
     runs-on: ubuntu-latest
     steps:
       - name: SendGrid
