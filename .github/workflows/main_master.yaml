@@ -3,42 +3,53 @@ on:
     branches:
       - develop
       - feature/zap
+      - feature/sendgrid
 
 name: Release | Deploy
 
 jobs:
-  security:
+   SendGrid:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-      - name: Snyk monitor
-        run: snyk test
-      - name: Install dependencies
-        run: | 
-              npm install -g snyk
-              snyk auth
+      - name: SendGrid
+        uses: peter-evans/sendgrid-action@v1
         env:
-          SNYK_TOKEN: 130124f8-a802-4b77-8496-fb1f910a02f6
+          SENDGRID_API_KEY: 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
+          SCRIPT_FILEPATH: ./email-sending-script.js
 
-  firebase_deploy:
-    name: Firebase Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Deploy to Firebase
-        run: echo "Deploy to firebase"
-      - name: Notify Slack
-        uses: 8398a7/action-slack@v3
-        with:
-          channel: '#test'
-          mention: 'here'
-          if_mention: failure,cancelled
-          status: ${{ job.status }}
-          fields: workflow,job,commit,repo,ref,author,took
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # optional
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-        if: always() # Pick up events even if the job fails or is canceled.
+# jobs:
+#   security:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@master
+#       - name: Run Snyk to check for vulnerabilities
+#         uses: snyk/actions/node@master
+#       - name: Snyk monitor
+#         run: snyk test
+#       - name: Install dependencies
+#         run: | 
+#               npm install -g snyk
+#               snyk auth
+#         env:
+#           SNYK_TOKEN: 130124f8-a802-4b77-8496-fb1f910a02f6
+
+#   firebase_deploy:
+#     name: Firebase Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repo
+#         uses: actions/checkout@master
+#       - name: Deploy to Firebase
+#         run: echo "Deploy to firebase"
+#       - name: Notify Slack
+#         uses: 8398a7/action-slack@v3
+#         with:
+#           channel: '#test'
+#           mention: 'here'
+#           if_mention: failure,cancelled
+#           status: ${{ job.status }}
+#           fields: workflow,job,commit,repo,ref,author,took
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # optional
+#           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+#         if: always() # Pick up events even if the job fails or is canceled.
