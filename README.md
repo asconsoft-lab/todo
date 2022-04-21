@@ -264,3 +264,5 @@ deletes this generated directory. Further, running `lein dev` will generate many
 development versions of the files in this directory.
 
 hello gintaa
+hello gintaa
+
